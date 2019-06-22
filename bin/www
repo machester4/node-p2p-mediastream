@@ -31,7 +31,8 @@ var turnServer = new Turn({
   credentials: {
     maicol: "123123"
   },
-  listeningIps: ["127.0.0.1"]
+  listeningIps: ["127.0.0.1"],
+  debugLevel: "ALL"
 });
 
 /**
