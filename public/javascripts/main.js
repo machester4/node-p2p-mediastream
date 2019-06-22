@@ -5,7 +5,18 @@ navigator.getUserMedia(
     var peer = new Peer({
       initiator: location.hash === "#init",
       trickle: false,
-      stream: stream
+      stream: stream,
+      config: {
+        iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
+          {
+            urls: "turn:peer-node.herokuapp.com:3478?transport=udp",
+            username: "maicol",
+            credential: "123123"
+          }
+        ]
+      }
     });
 
     peer.on("signal", function(data) {
