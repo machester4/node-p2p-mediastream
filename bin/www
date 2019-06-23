@@ -32,7 +32,6 @@ var turnServer = new Turn({
     maicol: "123123"
   },
   listeningIps: ["127.0.0.1"],
-  listeningPort: 443,
   debugLevel: "ALL"
 });
 
