@@ -9,11 +9,15 @@ navigator.getUserMedia(
       config: {
         iceServers: [
           { urls: "stun:stun.l.google.com:19302" },
-          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
           {
-            urls: "turn:turn.anyfirewall.com:443?transport=tcp",
-            username: "webrtc",
-            credential: "webrtc"
+            urls: "stun:numb.viagenie.ca:3478",
+            username: "machester4@gmail.com",
+            credential: "micael221"
+          },
+          {
+            urls: "turn:numb.viagenie.ca:3478",
+            username: "machester4@gmail.com",
+            credential: "micael221"
           }
         ]
       }
