@@ -7,7 +7,6 @@
 var app = require("../app");
 var debug = require("debug")("peer-node:server");
 var http = require("http");
-var Turn = require("node-turn");
 
 /**
  * Get port from environment and store in Express.
@@ -23,24 +22,10 @@ app.set("port", port);
 var server = http.createServer(app);
 
 /**
- * Create ICE TURN server
- */
-
-var turnServer = new Turn({
-  authMech: "long-term",
-  credentials: {
-    maicol: "123123"
-  },
-  listeningIps: ["127.0.0.1"],
-  debugLevel: "ALL"
-});
-
-/**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port);
-turnServer.start();
 server.on("error", onError);
 server.on("listening", onListening);
 

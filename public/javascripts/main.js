@@ -11,9 +11,9 @@ navigator.getUserMedia(
           { urls: "stun:stun.l.google.com:19302" },
           { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
           {
-            urls: "turn:peer-node.herokuapp.com:3478?transport=udp",
-            username: "maicol",
-            credential: "123123"
+            urls: "turn:turn.anyfirewall.com:443?transport=tcp",
+            username: "webrtc",
+            credential: "webrtc"
           }
         ]
       }
