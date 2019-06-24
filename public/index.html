@@ -10,10 +10,8 @@
 
 <body>
   <a href="#init" target="_blank">Init page</a>
-  <label>Your ID:</label><br/>
-  <textarea id="yourId"></textarea><br/>
-  <label>Other ID:</label><br/>
-  <textarea id="otherId"></textarea>
+  <label>Offer Code:</label><br/>
+  <input id="code" type="text" />
   <button id="connect">connect</button><br/>
 
   <label>Enter Message:</label><br/>
@@ -21,6 +19,7 @@
   <button id="send">send</button>
   <pre id="messages"></pre>
   <video id="video" />
+  <script src="socket.io/socket.io.js"></script>
   <script src="/javascripts/simplePeer.min.js" charset="utf-8"></script>
   <script src="/javascripts/main.js" charset="utf-8"></script>
 </body>

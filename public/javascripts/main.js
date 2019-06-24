@@ -1,5 +1,19 @@
+var socket = io();
 var Peer = window.SimplePeer;
 var peer = null;
+
+socket.on("connect", function() {
+  console.log("conectado al servidor");
+});
+
+socket.on("disconnect", function() {
+  console.log("Perdimos la conexion con el servidor");
+});
+
+socket.on("answer-signal", function(answer) {
+  console.log("answer-signal");
+  peer.signal(answer);
+});
 
 function addUserMedia(success, error) {
   navigator.getUserMedia({ video: true, audio: false }, success, error);
@@ -8,11 +22,15 @@ function addUserMedia(success, error) {
 function addPeerListeners() {
   if (!peer) throw "Todavia no se inicio el peer";
   peer.on("signal", function(data) {
-    if (data.type === "offer" || data.type === "answer") {
+    if (data.type === "offer") {
+      socket.emit("assing-offer-code", data, resp => {
+        document.getElementById("code").value = resp;
+      });
       console.log("signal type", data.type);
-      if (!document.getElementById("yourId").value) {
-        document.getElementById("yourId").value = JSON.stringify(data);
-      }
+    } else if (data.type === "answer") {
+      var code = document.getElementById("code").value;
+      socket.emit("answer-want-offer-signal", { code, answer: data });
+      console.log("signal type", data.type);
     } else {
       console.log("signal");
     }
@@ -80,8 +98,12 @@ window.addEventListener("load", function() {
     createPeer(null);
   }
   document.getElementById("connect").addEventListener("click", function() {
-    var otherId = JSON.parse(document.getElementById("otherId").value);
-    peer.signal(otherId);
+    var code = document.getElementById("code").value;
+    socket.emit("answer-want-connect", code, offer => {
+      if (offer) {
+        peer.signal(offer);
+      }
+    });
   });
 
   document.getElementById("send").addEventListener("click", function() {
