@@ -2,9 +2,9 @@
 This project use **NodeJS** for signaling
 
 # Run project
-`git clone https://github.com/machester4/node-p2p-mediastream.git`
-`yarn`
-`yarn start`
+1. `git clone https://github.com/machester4/node-p2p-mediastream.git`
+2. `yarn`
+3. `yarn start`
 
 ## Sharing media
 > 1. **open** `http://localhost:3000` in **client A** (he can see the stream)
